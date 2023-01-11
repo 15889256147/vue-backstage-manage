@@ -1,5 +1,4 @@
 <template>
-
   <el-row>
     <!-- 左侧卡片 -->
     <el-col :span="8" style="padding-right:10px">
@@ -90,8 +89,9 @@ const getData = async () => {
   linePhoneData(orderData)
   barUserData(userData)
   pirPhoneValue(videoData)
-  console.log(res);
+  // console.log(res);
 }
+
 // 绘制折线图
 const linePhoneData = (orderData) => {
   // 基于准备好的dom，初始化echarts实例
@@ -157,7 +157,6 @@ const pirPhoneValue = (videoData) => {
 onMounted(() => {
   // 请求数据
   getData()
-
 })
 
 </script>
