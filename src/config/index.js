@@ -6,17 +6,18 @@ const EnvConfig = {
   // 开发环境
   development: {
     baseApi: '/api',
-    mockAPI: ''
+    mockApi:
+      'https://www.fastmock.site/mock/567142769cd8788fda6a29e4b1c7be8e/api'
   },
   // 测试环境
   test: {
-    baseApi: '',
-    mockAPI: ''
+    baseApi: '/api',
+    mockApi: ''
   },
   // 线上环境
-  pro: {
-    baseApi: '',
-    mockAPI: ''
+  prod: {
+    baseApi: '/api',
+    mockApi: ''
   }
 }
 export default {

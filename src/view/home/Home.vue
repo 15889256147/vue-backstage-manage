@@ -63,48 +63,11 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance } from 'vue'
 import * as echarts from 'echarts'
-import { getData } from '../../api/index'
-// 订单数据
-const countData = reactive([
-  {
-    name: "今日支付订单",
-    value: 1234,
-    icon: "CircleCheckFilled",
-    color: "#2ec7c9",
-  },
-  {
-    name: "今日收藏订单",
-    value: 210,
-    icon: "StarFilled",
-    color: "#ffb980",
-  },
-  {
-    name: "今日未支付订单",
-    value: 1234,
-    icon: "Goods",
-    color: "#5ab1ef",
-  },
-  {
-    name: "本月支付订单",
-    value: 1234,
-    icon: "CircleCheckFilled",
-    color: "#2ec7c9",
-  },
-  {
-    name: "本月收藏订单",
-    value: 210,
-    icon: "StarFilled",
-    color: "#ffb980",
-  },
-  {
-    name: "本月未支付订单",
-    value: 1234,
-    icon: "Goods",
-    color: "#5ab1ef",
-  },
-])
+
+// 其proxy类似于vue2的this
+const { proxy } = getCurrentInstance()
 // 课程数据
 const tableLabel = reactive({
   name: '课程',
@@ -113,12 +76,24 @@ const tableLabel = reactive({
   totalBuy: '总购买'
 },)
 let tableData = ref([])
+const countData = ref([])
 let phoneDate = ref()
 let userBar = ref()
 let phoneValue = ref()
 
+// 调用请求接口
+const getData = async () => {
+  let res = await proxy.$api.getTableData()
+  const { orderData, userData, videoData } = res
+  tableData.value = res.tableData
+  countData.value = await proxy.$api.getCountData()
+  linePhoneData(orderData)
+  barUserData(userData)
+  pirPhoneValue(videoData)
+  console.log(res);
+}
 // 绘制折线图
-function linePhoneData(orderData) {
+const linePhoneData = (orderData) => {
   // 基于准备好的dom，初始化echarts实例
   let linePhone = echarts.init(phoneDate.value)
   const xAxis = Object.keys(orderData.data[0])
@@ -140,7 +115,7 @@ function linePhoneData(orderData) {
   linePhone.setOption(linePhoneOption);
 }
 // 绘制用户数据柱状图
-function barUserData(userData) {
+const barUserData = (userData) => {
   const barUser = echarts.init(userBar.value)
   const barUserOption = {
     tooltip: { trigger: "axis", },//触发时机
@@ -163,7 +138,7 @@ function barUserData(userData) {
   barUser.setOption(barUserOption)
 }
 // 绘制手机价格饼图
-function pirPhoneValue(videoData) {
+const pirPhoneValue = (videoData) => {
   let pirPhone = echarts.init(phoneValue.value)
   let pirPhoneOption = {
     tooltip: { trigger: "item" },//触发时机
@@ -178,18 +153,10 @@ function pirPhoneValue(videoData) {
   pirPhone.setOption(pirPhoneOption)
 }
 
-// 请求数据在挂载时
+// 在挂载时
 onMounted(() => {
-  getData().then(({ data }) => {
-    tableData.value = data.data.tableData
-    if (data.code == 200) {
-      const { orderData, userData, videoData } = data.data
-      linePhoneData(orderData)
-      barUserData(userData)
-      pirPhoneValue(videoData)
-    }
-    console.log(data);
-  })
+  // 请求数据
+  getData()
 
 })
 
@@ -206,19 +173,19 @@ onMounted(() => {
     border-bottom: 1px solid #ccc;
 
     .user-picture {
-      width: 100px;
-      height: 100px;
+      width: 30%;
+      height: 30%;
       border-radius: 50%;
       margin-right: 20px;
     }
 
     .user {
       .name {
-        font-size: 20px;
+        font-size: 2vw;
       }
 
       .state {
-        font-size: 12px;
+        font-size: 1vw;
         color: #999999;
       }
     }
@@ -229,7 +196,7 @@ onMounted(() => {
     .lastTime,
     .lastPlace {
       line-height: 24px;
-      font-size: 12px;
+      font-size: 1vw;
       color: #999999;
 
       .time,
@@ -260,8 +227,8 @@ onMounted(() => {
       margin-right: 10px;
 
       .order-icon {
-        // width: 30px;
-        // height: 30px;
+        width: 100%;
+        height: 100%;
         color: #fff;
       }
     }
@@ -272,11 +239,11 @@ onMounted(() => {
       justify-content: center;
 
       .order-data-value {
-        font-size: 20px;
+        font-size: 2vw;
       }
 
       .order-data-name {
-        font-size: 12px;
+        font-size: 1vw;
         color: #999;
       }
     }
