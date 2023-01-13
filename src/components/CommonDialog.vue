@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-import { get } from 'lodash';
 import { ref, reactive, computed, defineProps, defineEmits, toRefs } from 'vue'
 import { useStore } from 'vuex'
 const store = new useStore()
@@ -96,6 +95,7 @@ const onSubmit = () => {
 let onCancel = () => {
   store.commit('DELETE_FROM')
 }
+
 
 </script>
 

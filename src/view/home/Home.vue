@@ -83,8 +83,8 @@ let phoneValue = ref()
 // 调用请求接口
 const getData = async () => {
   let res = await proxy.$api.getTableData()
-  const { orderData, userData, videoData, countData } = res
-  tableData.value = res.tableData
+  const { orderData, userData, videoData, countData } = res.data
+  tableData.value = res.data.tableData
   countTData.value = countData
   linePhoneData(orderData)
   barUserData(userData)

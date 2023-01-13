@@ -12,3 +12,4 @@ Mock.mock(/api\/user\/getUser/, userApi.getUserList) //请求数据
 Mock.mock('/api/user/delUser', 'post', userApi.deleteUser) //删除数据
 Mock.mock('/api/user/addUser', 'post', userApi.createUser) //新增数据
 Mock.mock('/api/user/editUser', 'post', userApi.updateUser) //修改数据
+Mock.mock('/api/user/batchDel', 'post', userApi.batchremove) //批量删除数据

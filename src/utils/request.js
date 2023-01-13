@@ -21,9 +21,10 @@ http.interceptors.request.use(
 // 添加响应拦截器
 http.interceptors.response.use(
   function (res) {
+    // console.log(res)
     // 2xx 范围内的状态码都会触发该函数。
-    const { code, data } = res.data
-    if (code === 200) return data
+    const { code } = res.data
+    if (code === 200) return res.data
   },
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。对响应错误做点什么

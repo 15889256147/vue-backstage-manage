@@ -43,5 +43,14 @@ export default {
       mock: false,
       data
     })
+  },
+  // 批量删除用户数据
+  batchDel(data) {
+    return request({
+      url: '/user/batchDel',
+      method: 'POST',
+      mock: false,
+      data
+    })
   }
 }

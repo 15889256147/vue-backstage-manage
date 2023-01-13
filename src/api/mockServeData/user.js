@@ -40,7 +40,7 @@ export default {
    * @return {{code: number, count: number, data: *[]}}
    */
   getUserList: (config) => {
-    const { name, page = 1, limit = 20 } = param2Obj(config.url)
+    const { name, page = 1, limit = 10 } = param2Obj(config.url)
     // console.log('name:' + name, 'page:' + page, '分页大小limit:' + limit)
     const mockList = List.filter((user) => {
       if (
@@ -54,6 +54,7 @@ export default {
     const pageList = mockList.filter(
       (item, index) => index < limit * page && index >= limit * (page - 1)
     )
+    console.log(pageList[0])
     return {
       code: 200,
       count: mockList.length,
@@ -109,8 +110,7 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   batchremove: (config) => {
-    let { ids } = param2Obj(config.url)
-    ids = ids.split(',')
+    const { ids } = JSON.parse(config.body)
     List = List.filter((u) => !ids.includes(u.id))
     return {
       code: 200,
