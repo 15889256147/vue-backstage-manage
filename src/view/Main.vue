@@ -31,6 +31,10 @@ import MyAside from '../components/CommonAside.vue'
     .el-header {
       padding: 0;
     }
+
+    .el-main {
+      height: 100%;
+    }
   }
 }
 </style>

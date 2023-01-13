@@ -55,9 +55,9 @@ export default {
       (item, index) => index < limit * page && index >= limit * (page - 1)
     )
     return {
-      code: 20000,
+      code: 200,
       count: mockList.length,
-      list: pageList
+      data: pageList
     }
   },
   /**
@@ -67,7 +67,7 @@ export default {
    */
   createUser: (config) => {
     const { name, addr, age, birth, sex } = JSON.parse(config.body)
-    console.log(JSON.parse(config.body))
+    // console.log('11', JSON.parse(config.body))
     List.unshift({
       id: Mock.Random.guid(),
       name: name,
@@ -77,7 +77,7 @@ export default {
       sex: sex
     })
     return {
-      code: 20000,
+      code: 200,
       data: {
         message: '添加成功'
       }
@@ -98,7 +98,7 @@ export default {
     } else {
       List = List.filter((u) => u.id !== id)
       return {
-        code: 20000,
+        code: 200,
         message: '删除成功'
       }
     }
@@ -113,7 +113,7 @@ export default {
     ids = ids.split(',')
     List = List.filter((u) => !ids.includes(u.id))
     return {
-      code: 20000,
+      code: 200,
       data: {
         message: '批量删除成功'
       }
@@ -138,7 +138,7 @@ export default {
       }
     })
     return {
-      code: 20000,
+      code: 200,
       data: {
         message: '编辑成功'
       }

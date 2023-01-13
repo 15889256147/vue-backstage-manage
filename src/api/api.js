@@ -1,17 +1,47 @@
 // 管理整个项目的api
 import request from '../utils/request'
 
-// 请求首页数据
 export default {
+  // 请求首页数据
   getTableData() {
     return request({
-      url: '/home/getTableData',
+      url: '/home/getData',
       mock: true
     })
   },
-  getCountData() {
+  // 请求用户数据
+  getUser(params) {
     return request({
-      url: '/home/getCountData'
+      url: '/user/getUser',
+      data: params,
+      mock: false
+    })
+  },
+  // 删除用户数据
+  delUser(data) {
+    return request({
+      url: '/user/delUser',
+      method: 'POST',
+      mock: false,
+      data
+    })
+  },
+  // 新增用户数据
+  addUser(data) {
+    return request({
+      url: '/user/addUser',
+      method: 'POST',
+      mock: false,
+      data
+    })
+  },
+  // 修改用户数据
+  editUser(data) {
+    return request({
+      url: '/user/editUser',
+      method: 'POST',
+      mock: false,
+      data
     })
   }
 }
