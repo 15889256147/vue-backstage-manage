@@ -7,8 +7,12 @@
         </el-icon></el-button>
       <my-tag></my-tag>
     </div>
-    <!-- 右侧头像区域 -->
+    <!-- 右侧菜单区域 -->
     <div class="r-content">
+      <!-- 选择器开关 -->
+      <el-switch v-model="switchValue" class="switch" inline-prompt :active-icon="Sunny" :inactive-icon="Moon"
+        style="--el-switch-on-color: #909399; --el-switch-off-color: #f2f2f2" />
+      <!-- 头像区域 -->
       <el-dropdown>
         <span class="el-dropdown-link">
           <img class="user-picture" :src="imgUrl" alt="">
@@ -30,10 +34,13 @@
 
 <script setup>
 import MyTag from './CommonTags.vue'
+import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 const store = new useStore()
 // 动态引入图片
 const imgUrl = new URL('../assets/images/user-default.png', import.meta.url).href
+const switchValue = ref(true)
 
 // 折叠菜单方法
 const handleMenu = () => {
@@ -52,11 +59,13 @@ const handleMenu = () => {
   padding: 0 20px;
 
   .r-content {
-
+    .switch {
+      margin-right: 30px;
+    }
 
     .user-picture {
-      height: 40px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
       border-radius: 50%;
     }
   }

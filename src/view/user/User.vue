@@ -140,11 +140,9 @@ onMounted(() => {
 }
 
 .common-table {
-  // position: relative;
-  height: 95%;
+  height: 93%;
 
   .el-table {
-    // padding-bottom: 5px;
     height: 95%
   }
 
@@ -154,9 +152,5 @@ onMounted(() => {
     padding-bottom: 10px;
   }
 
-  // .el-pagination {
-  //   position: absolute;
-  //   right: 20px;
-  // }
 }
 </style>

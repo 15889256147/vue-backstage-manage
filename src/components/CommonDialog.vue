@@ -48,6 +48,7 @@ let isVisible = computed({
   },
   set(newValue) {
     store.commit('CHANGE_DAI', newValue)
+    // isVisible = newValue
   }
 })
 // 获取表单数据
