@@ -30,7 +30,7 @@
     <el-col :span="16" style="padding-left:10px">
       <!-- 支付订单数据展示 -->
       <div class="order">
-        <el-card shadow="hover" class="order-card" v-for="item in countData" :key="item.name"
+        <el-card shadow="hover" class="order-card" v-for="item in countTData" :key="item.name"
           :body-style="{ display: 'flex', padding: 0 }">
           <div class="icon">
             <component class="order-icon" :is="item.icon" :style="`background:${item.color}`"></component>
@@ -75,7 +75,7 @@ const tableLabel = reactive({
   totalBuy: '总购买'
 },)
 let tableData = ref([])
-const countData = ref([])
+const countTData = ref([])
 let phoneDate = ref()
 let userBar = ref()
 let phoneValue = ref()
@@ -83,9 +83,9 @@ let phoneValue = ref()
 // 调用请求接口
 const getData = async () => {
   let res = await proxy.$api.getTableData()
-  const { orderData, userData, videoData } = res
-  tableData.value = res.tableData
-  countData.value = await proxy.$api.getCountData()
+  const { orderData, userData, videoData, countData } = res.data
+  tableData.value = res.data.tableData
+  countTData.value = countData
   linePhoneData(orderData)
   barUserData(userData)
   pirPhoneValue(videoData)

@@ -27,7 +27,6 @@ const handleClose = (tag, index) => {
 // 点击跳转至对应路由
 const clickTag = (item) => {
   router.push(item.path)
-  console.log(1);
 }
 
 
