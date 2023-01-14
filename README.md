@@ -1,5 +1,4 @@
 
-![image 300*200](https://user-images.githubusercontent.com/100066215/211803814-8749fc01-432f-407c-ac98-56e09ff64d1a.png)
 ##### 启动命令：
 `` npm run dev``
 ##### 技术栈：
