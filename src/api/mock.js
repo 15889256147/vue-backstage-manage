@@ -2,7 +2,7 @@
 import Mock from 'mockjs'
 import homeApi from './mockServeData/home'
 import userApi from './mockServeData/user'
-// import loginApi from './mockServeData/permission'
+import loginApi from './mockServeData/permission'
 
 // 定义mock请求拦截
 Mock.mock('/api/home/getData', homeApi.getStaticalData)
@@ -13,3 +13,5 @@ Mock.mock('/api/user/delUser', 'post', userApi.deleteUser) //删除数据
 Mock.mock('/api/user/addUser', 'post', userApi.createUser) //新增数据
 Mock.mock('/api/user/editUser', 'post', userApi.updateUser) //修改数据
 Mock.mock('/api/user/batchDel', 'post', userApi.batchremove) //批量删除数据
+// 登录页面数据
+Mock.mock(/api\/permission\/getMenu/, 'post', loginApi.getMenu) //登录页面数据

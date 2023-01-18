@@ -52,5 +52,14 @@ export default {
       mock: false,
       data
     })
+  },
+  // 登录获取菜单数据
+  getMenu(data) {
+    return request({
+      url: '/permission/getMenu',
+      method: 'POST',
+      mock: false,
+      data
+    })
   }
 }
