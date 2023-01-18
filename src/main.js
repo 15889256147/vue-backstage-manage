@@ -9,8 +9,8 @@ import api from './api/api'
 
 const app = createApp(App)
 app.config.globalProperties.$api = api //挂载到全局
+store.commit('LOCAL_MENU', router)
 app.use(router).use(store)
-if (router.currentRoute.value.path != '/home') router.push('/home')
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
