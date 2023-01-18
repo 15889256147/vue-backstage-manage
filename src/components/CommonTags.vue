@@ -1,6 +1,6 @@
 <template>
   <!-- 标签 -->
-  <el-tag v-for="(tag, index) in tags" :key="tag.path" class="mx-1" :closable="tag.path != '/home'" type="info"
+  <el-tag v-for="(tag, index) in tags" :key="tag.path" class="mx-1" :closable="tag.path != '/home'" type="info" color=""
     @close="handleClose(tag, index)" :effect="tag.path === route.path ? 'dark' : 'plain'" @click="clickTag(tag)">
     {{ tag.label }}
   </el-tag>

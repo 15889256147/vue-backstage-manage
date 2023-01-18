@@ -11,7 +11,8 @@
     <div class="r-content">
       <!-- 选择器开关 -->
       <el-switch v-model="switchValue" class="switch" inline-prompt :active-icon="Sunny" :inactive-icon="Moon"
-        style="--el-switch-on-color: #909399; --el-switch-off-color: #f2f2f2" />
+        style="--el-switch-on-color: #ffd04b; --el-switch-off-color: #f2f2f2" />
+      <!-- style="--el-switch-on-color: #909399; --el-switch-off-color: #f2f2f2"  -->
       <!-- 头像区域 -->
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -23,7 +24,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click="handleExit">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -36,7 +37,9 @@
 import MyTag from './CommonTags.vue'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { Sunny, Moon } from '@element-plus/icons-vue'
+const router = new useRouter()
 const store = new useStore()
 // 动态引入图片
 const imgUrl = new URL('../assets/images/user-default.png', import.meta.url).href
@@ -45,6 +48,11 @@ const switchValue = ref(true)
 // 折叠菜单方法
 const handleMenu = () => {
   store.commit('COLLAPSE_MENU')
+}
+// 退出到登录页
+const handleExit = () => {
+  router.push('/login')
+  localStorage.removeItem('menu')
 }
 
 </script>

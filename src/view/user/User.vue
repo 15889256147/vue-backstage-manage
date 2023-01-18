@@ -27,7 +27,9 @@
       </el-table-column>
     </el-table>
     <div class="footer">
-      <el-button class="delete" size="small" type="danger" @click="handleSelect">一键删除</el-button>
+      <el-button class="delete" size="small" type="danger" @click="handleSelect"><el-icon>
+          <Delete />
+        </el-icon></el-button>
       <!-- 分页区域 -->
       <el-pagination background small layout="prev, pager, next" :total="total" @current-change="handleCurrent" />
     </div>
@@ -118,9 +120,11 @@ let handleSelectionChange = (val) => {
 }
 // 一键清除
 let handleSelect = () => {
-  let data = selection.value.map(item => item.id)
-  proxy.$api.batchDel({ ids: data })
-  getData()
+  if (selection.value.length != 0) {
+    let data = selection.value.map(item => item.id)
+    proxy.$api.batchDel({ ids: data })
+    getData()
+  }
 }
 onMounted(() => {
   getData()

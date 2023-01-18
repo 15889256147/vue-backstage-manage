@@ -3,7 +3,7 @@
     <!-- 左侧卡片 -->
     <el-col :span="8" style="padding-right:10px">
       <!-- 上方个人信息 -->
-      <el-card class="info" shadow="hover">
+      <el-card class="info" shadow="always">
         <div class="user-info">
           <img class="user-picture" src="../../assets/images/user-default.png" alt="">
           <div class="user">
@@ -18,7 +18,7 @@
       </el-card>
       <!-- 下方课程信息 -->
       <div class="class">
-        <el-card shadow="hover" style="margin-top:20px;height:480px;">
+        <el-card shadow="always" style="margin-top:20px;height:480px;">
           <el-table :data="tableData" style="width: 100%">
             <el-table-column v-for="(val, key) in tableLabel" :key="key" :prop="key" :label="val">
             </el-table-column>
@@ -30,7 +30,7 @@
     <el-col :span="16" style="padding-left:10px">
       <!-- 支付订单数据展示 -->
       <div class="order">
-        <el-card shadow="hover" class="order-card" v-for="item in countTData" :key="item.name"
+        <el-card shadow="always" class="order-card" v-for="item in countTData" :key="item.name"
           :body-style="{ display: 'flex', padding: 0 }">
           <div class="icon">
             <component class="order-icon" :is="item.icon" :style="`background:${item.color}`"></component>
@@ -42,16 +42,16 @@
         </el-card>
       </div>
       <!-- 折线图 -->
-      <el-card shadow="hover" style="height:260px">
+      <el-card shadow="always" style="height:260px">
         <div ref="phoneDate" style="height:260px"></div>
       </el-card>
       <div class="graph">
         <!-- 柱状图 -->
-        <el-card shadow="hover">
+        <el-card shadow="always">
           <div ref="userBar" style="height:260px"></div>
         </el-card>
         <!-- 饼图 -->
-        <el-card shadow="hover">
+        <el-card shadow="always">
           <div ref="phoneValue" style="height:240px"></div>
         </el-card>
       </div>
