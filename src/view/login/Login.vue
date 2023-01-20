@@ -77,6 +77,7 @@ export default {
           })
           store.commit('UPDATE_MENU', res.data.menu)
           store.commit('LOCAL_MENU', router)
+          store.commit('SET_TOKEN', res.data.token)
           router.push('/home')
         } else {
           ElMessage({

@@ -52,7 +52,8 @@ const handleMenu = () => {
 // 退出到登录页
 const handleExit = () => {
   router.push('/login')
-  localStorage.removeItem('menu')
+  store.commit('CLEAR_MENU')
+  store.commit('CLEAR_TOKEN')
 }
 
 </script>

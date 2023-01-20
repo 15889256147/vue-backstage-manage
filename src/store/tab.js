@@ -1,5 +1,5 @@
 // 存放关于tab栏的vuex容器
-// import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 export default {
   state: {
     // 判断侧边栏是否折叠
@@ -14,7 +14,8 @@ export default {
         url: 'Home/Home'
       }
     ],
-    menu: []
+    menu: [],
+    token: ''
   },
   mutations: {
     // 修改菜单展开收起的方法
@@ -33,6 +34,7 @@ export default {
       const index = state.tabsList.findIndex((item) => value.path == item.path)
       state.tabsList.splice(index, 1)
     },
+
     // 登录后获取菜单数据
     UPDATE_MENU(state, value) {
       state.menu = value
@@ -64,6 +66,26 @@ export default {
       menuArray.forEach((item) => {
         router.addRoute('Main', item)
       })
+    },
+    // 退出清空菜单数据
+    CLEAR_MENU(state) {
+      state.menu = []
+      localStorage.removeItem('menu')
+    },
+
+    // 设置token
+    SET_TOKEN(state, value) {
+      state.token = value
+      Cookies.set('token', value)
+    },
+    // 获取token
+    GET_TOKEN(state) {
+      state.token = state.token || Cookies.get('token')
+    },
+    // 清空token
+    CLEAR_TOKEN(state) {
+      state.token = ''
+      Cookies.remove('token')
     }
   }
 }
